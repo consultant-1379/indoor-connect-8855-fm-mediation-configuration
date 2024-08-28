@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************
+  * COPYRIGHT Ericsson LMI 2015. All rights reserved. * * No part of this document
+  may be reproduced in any form without the * written permission of the copyright
+  owner.The contents of this document * are subject to revision without notice
+  due to continued progress in * methodology, design and manufacturing. Ericsson
+  shall have no liability * for any error or damage of any kind resulting from
+  the use of this document. * ******************************************************************************* -->
+
+<med_configuration:MediationConfigurationDefinition
+      oss_common:lifeCycle="CURRENT" oss_common:name="IndoorConnect8855FmMediationConfigurationModel"
+      oss_common:ns="Indoor-connect-8855" oss_common:version="1.0.0"
+      xmlns:med_configuration="urn:com:ericsson:schema:xml:oss:med_configuration"
+      xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+>
+
+    <oss_common:modelCreationInfo author="Raisers"
+                                  creationDate="19/05/2023">
+        <oss_common:designedModel componentId="indoor-connect-8855-fm-mediation-configuration"/>
+    </oss_common:modelCreationInfo>
+
+    <oss_common:desc>
+        Mediation configuration for INDOOR CONNECT Fault Management
+    </oss_common:desc>
+
+
+    <med_configuration:flowInvocation
+          flowUrn="//SNMP/AlarmSyncFlow/1.0.0">
+        <med_configuration:eventBasedInvocation
+              eventTypeUrn="//global/FmMediationAlarmSyncRequest/1.0.0">
+        </med_configuration:eventBasedInvocation>
+    </med_configuration:flowInvocation>
+
+    <!-- HeartBeat Configuration On/Off -->
+    <med_configuration:flowInvocation
+          flowUrn="//SNMP/AlarmHeartBeatFlow/1.0.0">
+        <med_configuration:eventBasedInvocation
+              eventTypeUrn="//global/FmMediationHeartBeatRequest/1.0.0">
+        </med_configuration:eventBasedInvocation>
+    </med_configuration:flowInvocation>
+
+    <med_configuration:flowInvocation
+          flowUrn="//SNMP/NotificationHandlingFlow/1.0.0">
+        <med_configuration:eventBasedInvocation
+              eventTypeUrn="//global/FmMediationNotificationConsumerStart/1.0.0">
+        </med_configuration:eventBasedInvocation>
+    </med_configuration:flowInvocation>
+
+    <med_configuration:flowInvocation
+          flowUrn="//SNMP/SupervisionAlarmFlow/1.0.0">
+        <med_configuration:eventBasedInvocation
+              eventTypeUrn="//global/FmSupervisionRecoveryTaskRequest/1.0.0">
+        </med_configuration:eventBasedInvocation>
+    </med_configuration:flowInvocation>
+
+    <!-- HeartBeat Configuration On/Off for Emergency vm -->
+    <med_configuration:flowInvocation flowUrn="//SNMP/AlarmHeartBeatConfigFlow/1.0.0" id="fmAlarmHeartBeatConfigEcim">
+        <med_configuration:eventBasedInvocation eventTypeUrn="//global/FmMediationHeartBeatConfigRequest/1.0.0">
+        </med_configuration:eventBasedInvocation>
+    </med_configuration:flowInvocation>
+
+    <!-- Supervision On/Off for Emergency vm -->
+    <med_configuration:flowInvocation flowUrn="//SNMP/SupervisionAlarmPartialFlow/1.0.0" id="fmAlarmSupervisionPartialEcim">
+        <med_configuration:eventBasedInvocation eventTypeUrn="//global/FmMediationPartialSupervisionRequest/1.0.0">
+        </med_configuration:eventBasedInvocation>
+    </med_configuration:flowInvocation>
+
+    <!-- Supervision On-Off -->
+    <med_configuration:supervisionConfiguration
+	    flowUrn="//SNMP/SupervisionAlarmFlow/1.0.0" supervisionTypeUrn="//OSS_NE_FM_DEF/FmAlarmSupervision/1.1.0">
+        <med_configuration:parentMoType
+              primaryTypeUrn="//OSS_NE_DEF/NetworkElement/*"/>
+    </med_configuration:supervisionConfiguration>
+
+</med_configuration:MediationConfigurationDefinition>
